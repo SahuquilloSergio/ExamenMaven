@@ -3,24 +3,27 @@ package com.sergio.examenmaven;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static javax.management.Query.div;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
 import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 public class Main {
 
     public static void main(String[] args) {
+       //Declaramos la variable doc que usaremos durante todo el proyecto
+        
         Document doc = null;
+        
+        /*
+        try-catch para cargar el html
+        */
         try {
             doc = Jsoup.connect("https://weather.com/es-ES/tiempo/hoy/l/SPXX0084:1:SP").get();
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
+        //Codigo para cargar los datos e imprimirlos
           String title = doc.title();
           Element headerDiv = doc.select("div.today_nowcard-temp").first();
           
